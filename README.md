@@ -109,6 +109,89 @@ PORT=5001
 
 ---
 
+# 🏗️ System Architecture
+
+The platform follows a **microservices-based architecture** where the MERN backend manages authentication, business logic, and database operations, while a dedicated Python ML service performs fraud detection. A Gemini-powered AI agent analyzes ML predictions to generate explainable insights and recommendations.
+
+```text
+                                              +----------------------+
+                        |    React Frontend    |
+                        | Dashboard & Charts   |
+                        +----------+-----------+
+                                   |
+                               REST API
+                                   |
+                                   ▼
+                     +-------------------------+
+                     |  Node.js + Express API  |
+                     +-----------+-------------+
+                                 |
+           +---------------------+----------------------+
+           |                                            |
+           ▼                                            ▼
+    MongoDB Database                           Python ML Service
+ (Users, Transactions, Alerts)         (Isolation Forest Model)
+           |                                            |
+           |                Fraud / Safe + Confidence Score
+           |                                            |
+           +---------------------+----------------------+
+                                 |
+                                 ▼
+                  Gemini AI Agent (Reasoning Layer)
+                                 |
+        +------------------------+-------------------------+
+        |                        |                         |
+        ▼                        ▼                         ▼
+ Fraud Explanation        Risk Score (0–100)      Recommended Action
+                                                  (Approve / OTP /
+                                                       Block)
+                                 |
+                                 ▼
+                    Save Results to MongoDB
+                                 |
+                                 ▼
+             Dashboard • Reports • Email Alerts • Analytics
+```
+
+---
+
+# 🔄 Fraud Detection Workflow
+
+```text
+User
+ │
+ ▼
+React Frontend
+ │
+ ▼
+Node.js Backend
+ │
+ ├── Validate Transaction
+ ├── Store Transaction
+ │
+ ▼
+Python ML Service
+(Isolation Forest)
+ │
+ ▼
+Prediction
+(Fraud / Safe)
+ │
+ ▼
+Gemini AI Agent
+ │
+ ├── Explain Prediction
+ ├── Generate Risk Score
+ ├── Recommend Action
+ └── Prevention Tips
+ │
+ ▼
+MongoDB
+ │
+ ▼
+Dashboard & Reports
+```
+
 ## 🚀 How to Run Locally
 
 ### 1. Clone & install dependencies
