@@ -320,6 +320,6 @@ docs/screenshots/admin-reports.png
   React components with hooks only.
 
 ---
-
+## 📄 License
 MIT — feel free to use this project as a learning reference or a starting
 point for your own fraud detection platform.
