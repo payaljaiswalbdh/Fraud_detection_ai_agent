@@ -114,7 +114,7 @@ PORT=5001
 The platform follows a **microservices-based architecture** where the MERN backend manages authentication, business logic, and database operations, while a dedicated Python ML service performs fraud detection. A Gemini-powered AI agent analyzes ML predictions to generate explainable insights and recommendations.
 
 ```text
-                                              +----------------------+
+                        +----------------------+
                         |    React Frontend    |
                         | Dashboard & Charts   |
                         +----------+-----------+
